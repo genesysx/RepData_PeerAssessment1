@@ -98,7 +98,7 @@ stepsPerDayMedianDT <- median(stepsPerDayDT)
 *Mean (NA replaced by Median/Interval): `r stepsPerDayMeanDT`*
 *Median (NA replaced by Median/Interval):  `r stepsPerDayMedianDT`*
 
-**Since the Mean is less than the Median and also because the method of replacing the NA values is by using the Median for each 5-minute interval, the new Steps Mean is expected to drop while the Median remains the same.**
+*Since the Mean is less than the Median and also because the method of replacing the NA values is by using the Median for each 5-minute interval, the new Steps Mean is expected to drop while the Median remains the same.*
 ----
 
 ## Are there differences in activity patterns between weekdays and weekends?
