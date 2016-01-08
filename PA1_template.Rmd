@@ -7,8 +7,6 @@ date: "6 January 2016"
 ---
 
 # Reproducible Research: Peer Assessment 1
-library(ggplot2)
-library(data.table)
 
 ##### 1. Load the data (i.e. read.csv())
 ```{r, results='markup', warning=TRUE, message=TRUE, echo=TRUE}
@@ -26,6 +24,7 @@ stepsPerDay <- tapply(activityData$steps, activityData$date, sum, na.rm=TRUE)
 
 ##### 2. Make a histogram of the total number of steps taken each day
 ```{r, echo= TRUE}
+library(ggplot2)
 qplot(stepsPerDay, xlab='Total Steps/ Day', ylab='Freq Using BinWidth 500', binwidth=500, geom="histogram", fill=I("blue"))
 
 ```
@@ -35,8 +34,8 @@ qplot(stepsPerDay, xlab='Total Steps/ Day', ylab='Freq Using BinWidth 500', binw
 stepsPerDayMean <- mean(stepsPerDay)
 stepsPerDayMedian <- median(stepsPerDay)
 ```
-* Mean: `r stepsPerDayMean`
-* Median:  `r stepsPerDayMedian`
+*Mean: `r stepsPerDayMean`*
+*Median:  `r stepsPerDayMedian`*
 
 -----
 
@@ -61,7 +60,7 @@ timeMostSteps<-gsub("[.]", "\\1:", ans/100)
 
 ```
 
-* Most Steps at: `r timeMostSteps`
+*Most Steps at: `r timeMostSteps`*
 
 ----
 
@@ -71,7 +70,7 @@ timeMostSteps<-gsub("[.]", "\\1:", ans/100)
 noMissingVal <- length(which(is.na(activityData$steps)))
 ```
 
-* Number of missing values: `r noMissingVal`
+*Number of missing values: `r noMissingVal`*
 
 ##### 2. Devise a strategy for filling in all of the missing values in the dataset.
 
@@ -79,6 +78,7 @@ noMissingVal <- length(which(is.na(activityData$steps)))
 
 ##### 3. Create a new dataset that is equal to the original dataset but with the missing data filled in.
 ```{r}
+library(data.table)
 DT <- data.table(activityData)
 setkey(DT, interval)
 DT[,steps := ifelse(is.na(steps), median(steps, na.rm=TRUE), steps), by=interval]
@@ -95,10 +95,10 @@ qplot(stepsPerDayDT, xlab='Total Steps/ Day (NA replaced by Median/Interval)', y
 stepsPerDayMeanDT <- mean(stepsPerDayDT)
 stepsPerDayMedianDT <- median(stepsPerDayDT)
 ```
-* Mean (NA replaced by Median/Interval): `r stepsPerDayMeanDT`
-* Median (NA replaced by Median/Interval):  `r stepsPerDayMedianDT`
+*Mean (NA replaced by Median/Interval): `r stepsPerDayMeanDT`*
+*Median (NA replaced by Median/Interval):  `r stepsPerDayMedianDT`*
 
-* Since the Mean is less than the Median and also because the method of replacing the NA values is by using the Median for each 5-minute interval, the new Steps Mean is expected to drop while the Median remains the same.
+**Since the Mean is less than the Median and also because the method of replacing the NA values is by using the Median for each 5-minute interval, the new Steps Mean is expected to drop while the Median remains the same.**
 ----
 
 ## Are there differences in activity patterns between weekdays and weekends?
