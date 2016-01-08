@@ -27,13 +27,6 @@ stepsPerDay <- tapply(activityData$steps, activityData$date, sum, na.rm=TRUE)
 
 ```r
 library(ggplot2)
-```
-
-```
-## Need help? Try the ggplot2 mailing list: http://groups.google.com/group/ggplot2.
-```
-
-```r
 qplot(stepsPerDay, xlab='Total Steps/ Day', ylab='Freq Using BinWidth 500', binwidth=500, geom="histogram", fill=I("blue"))
 ```
 
@@ -119,7 +112,7 @@ stepsPerDayMedianDT <- median(stepsPerDayDT)
 *Mean (NA replaced by Median/Interval): 9503.8688525*
 *Median (NA replaced by Median/Interval):  10395*
 
-**Since the Mean is less than the Median and also because the method of replacing the NA values is by using the Median for each 5-minute interval, the new Steps Mean is expected to drop while the Median remains the same.**
+*Since the Mean is less than the Median and also because the method of replacing the NA values is by using the Median for each 5-minute interval, the new Steps Mean is expected to drop while the Median remains the same.*
 ----
 
 ## Are there differences in activity patterns between weekdays and weekends?
